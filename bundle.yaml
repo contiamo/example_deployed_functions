@@ -11,3 +11,7 @@ functions:
     lang: dockerfile
     handler: /functions/r-hello
     image: r-hello
+  python-hello:
+    lang: dockerfile
+    handler: /functions/python-hello
+    image: python-hello
