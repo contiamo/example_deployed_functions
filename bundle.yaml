@@ -1,0 +1,13 @@
+api_version: 0.0.2
+name: example_functions
+edit:
+  image: contiamo/datascience-lab:latest
+functions:
+  go-hello:
+    lang: dockerfile
+    function: /functions/go-hello
+    image: go-hello
+  r-hello:
+    lang: dockerfile
+    handler: /functions/r-hello
+    image: r-hello
