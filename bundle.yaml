@@ -20,6 +20,10 @@ functions:
     handler: /functions/js-hello
     image: js-hello
   ruby-hello:
-    land: dockerfile
-    handler: /function/ruby-hello
+    lang: dockerfile
+    handler: /functions/ruby-hello
     image: ruby-hello
+  java-hello:
+    lang: dockerfile
+    handler: /functions/java-hello
+    image: java-hello
