@@ -5,7 +5,7 @@ COPY . .
 RUN ghc --make /function/handler.sh -o /function/handler
 # go test $(go list ./... | grep -v /vendor/) -cover
 
-FROM alpine:3.7
+FROM python:3-alpine
 RUN apk --no-cache add curl \
     && echo "Pulling watchdog binary from Github." \
     && curl -sSL https://github.com/openfaas/faas/releases/download/0.8.10/fwatchdog > /usr/bin/fwatchdog \
