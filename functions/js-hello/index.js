@@ -1,31 +1,12 @@
-// Copyright (c) Alex Ellis 2017. All rights reserved.
-// Licensed under the MIT license. See LICENSE file in the project root for full license information.
+process.stdin.setEncoding('utf8');
 
-"use strict"
-
-const getStdin = require('get-stdin');
-
-const handler = require('./function/handler');
-
-getStdin().then(val => {
-    handler(val, (err, res) => {
-        if (err) {
-            return console.error(err);
-        }
-        if(isArray(res) || isObject(res)) {
-            console.log(JSON.stringify(res));
-        } else {
-            process.stdout.write(res);
-        }
-    });
-}).catch(e => {
-    console.error(e.stack);
+process.stdin.on('readable', () => {
+    const chunk = process.stdin.read();
+    if (chunk !== null) {
+        process.stdout.write(`Hi there, you said: ${chunk}`);
+    }
 });
 
-const isArray = (a) => {
-    return (!!a) && (a.constructor === Array);
-};
-
-const isObject = (a) => {
-    return (!!a) && (a.constructor === Object);
-};
+process.stdin.on('end', () => {
+    process.stdout.write('end');
+});
