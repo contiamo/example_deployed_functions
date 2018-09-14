@@ -27,3 +27,7 @@ functions:
     lang: dockerfile
     handler: /functions/java-hello
     image: java-hello
+  cpp-jello:
+    lang: dockerfile
+    handler: /functions/cpp-hello
+    image: cpp-hello
