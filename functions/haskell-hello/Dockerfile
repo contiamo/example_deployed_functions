@@ -1,35 +1,29 @@
 FROM haskell as builder
 
+WORKDIR /home
+
 COPY . .
 
-RUN ghc --make /function/handler.sh -o /function/handler
-# go test $(go list ./... | grep -v /vendor/) -cover
+RUN ghc --make function/handler.hs -o handler
 
-FROM python:3-alpine
-RUN apk --no-cache add curl \
+FROM ubuntu
+RUN adduser jovyan
+WORKDIR /home
+
+RUN apt-get update \
+    && apt-get -y install curl \
     && echo "Pulling watchdog binary from Github." \
     && curl -sSL https://github.com/openfaas/faas/releases/download/0.8.10/fwatchdog > /usr/bin/fwatchdog \
-    && chmod +x /usr/bin/fwatchdog \
-    && apk del curl --no-cache
-RUN apk --no-cache add ca-certificates
+    && chmod +x /usr/bin/fwatchdog 
 
-# Add non root user
-RUN addgroup -S app && adduser -S -g app app
-RUN mkdir -p /home/app
+COPY --from=builder /home/function/handler    .
 
-WORKDIR /home/app
+RUN chmod u+x handler
 
-COPY --from=builder /usr/bin/fwatchdog         .
-
-COPY --from=builder /haskell/src/handler/function/  .
-COPY --from=builder /haskell/src/handler/handler    .
-
-RUN chown -R app /home/app
-
-USER app
+USER jovyan
 
 ENV fprocess="./handler"
 
 HEALTHCHECK --interval=2s CMD [ -e /tmp/.lock ] || exit 1
 
-CMD ["./fwatchdog"]
+CMD ["/usr/bin/fwatchdog"]

@@ -35,3 +35,7 @@ functions:
     lang: dockerfile
     handler: /functions/julia-hello
     image: julia-hello
+  haskell-hello:
+    lang: dockerfile
+    handler: /functions/haskell-hello
+    image: haskell-hello
