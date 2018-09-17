@@ -11,14 +11,14 @@ COPY . .
 RUN g++ -g function/handler.cpp -o function/handler
 #
 FROM ubuntu
+RUN adduser jovyan
+WORKDIR /home
+
 RUN apt-get update \
     && apt-get -y install curl \
     && echo "Pulling watchdog binary from Github." \
-    && curl -sSL https://github.com/openfaas/faas/releases/download/0.8.10/fwatchdog > /usr/bin/fwatchdog \
-    && chmod +x /usr/bin/fwatchdog 
-
-RUN adduser jovyan
-WORKDIR /home
+    && curl -sSL https://github.com/openfaas/faas/releases/download/0.8.10/fwatchdog > /home/fwatchdog \
+    && chmod +x /home/fwatchdog 
 
 COPY --from=builder /home/function/handler    .
 
@@ -30,4 +30,4 @@ ENV fprocess="./handler"
 
 HEALTHCHECK --interval=2s CMD [ -e /tmp/.lock ] || exit 1
 
-#CMD ["./fwatchdog"]
+CMD ["./fwatchdog"]
