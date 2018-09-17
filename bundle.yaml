@@ -31,3 +31,7 @@ functions:
     lang: dockerfile
     handler: /functions/cpp-hello
     image: cpp-hello
+  julia-hello:
+    lang: dockerfile
+    handler: /functions/julia-hello
+    image: julia-hello
