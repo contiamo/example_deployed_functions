@@ -43,3 +43,7 @@ functions:
     lang: dockerfile
     handler: /functions/scala-hello
     image: scala-hello
+  rust-hello:
+    lang: dockerfile
+    handler: /functions/rust-hello
+    image: rust-hello
