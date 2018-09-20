@@ -1,33 +1,25 @@
 FROM ubuntu as builder
-# install gcc
+# get watchdog 
 ENV DEBIAN_FRONTEND noninteractive
-RUN apt-get update && \
-    apt-get -y install gcc mono-mcs && \
-    rm -rf /var/lib/apt/lists/*
-
-WORKDIR /home
-COPY . .
-
-RUN g++ -g function/handler.cpp -o function/handler
-#
-FROM ubuntu
-RUN adduser jovyan
-WORKDIR /home
-
 RUN apt-get update \
     && apt-get -y install curl \
     && echo "Pulling watchdog binary from Github." \
-    && curl -sSL https://github.com/openfaas/faas/releases/download/0.8.10/fwatchdog > /home/fwatchdog \
-    && chmod +x /home/fwatchdog 
+    && curl -sSL https://github.com/openfaas/faas/releases/download/0.8.10/fwatchdog > /usr/bin/fwatchdog \
+    && chmod +x /usr/bin/fwatchdog
 
-COPY --from=builder /home/function/handler    .
+# install gcc
+RUN apt-get -y install gcc mono-mcs 
 
-RUN chmod u+x handler
+WORKDIR /cpp/src/handler
+COPY . .
 
-USER jovyan
+RUN g++ -g function/handler.cpp -o handler
 
+FROM gcr.io/distroless/cc
+COPY --from=builder /cpp/src/handler /
+COPY --from=builder /usr/bin/fwatchdog /
 ENV fprocess="./handler"
 
-HEALTHCHECK --interval=2s CMD [ -e /tmp/.lock ] || exit 1
+HEALTHCHECK --interval=1s CMD [ -e /tmp/.lock ] || exit 1
 
 CMD ["./fwatchdog"]
