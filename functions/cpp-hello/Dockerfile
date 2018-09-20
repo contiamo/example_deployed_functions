@@ -10,16 +10,16 @@ RUN apt-get update \
 # install gcc
 RUN apt-get -y install gcc mono-mcs 
 
-WORKDIR /cpp/src/handler
+WORKDIR /src/handler
 COPY . .
 
 RUN g++ -g function/handler.cpp -o handler
 
 FROM gcr.io/distroless/cc
-COPY --from=builder /cpp/src/handler /
+COPY --from=builder /src/handler /
 COPY --from=builder /usr/bin/fwatchdog /
 ENV fprocess="./handler"
 
 HEALTHCHECK --interval=1s CMD [ -e /tmp/.lock ] || exit 1
 
-CMD ["./fwatchdog"]
+ENTRYPOINT ["./fwatchdog"]
