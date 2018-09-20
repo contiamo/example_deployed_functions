@@ -6,7 +6,7 @@ RUN apk --no-cache add curl \
     && chmod +x /usr/bin/fwatchdog \
     && apk del curl --no-cache
 
-WORKDIR /go/src/handler
+WORKDIR /src/handler
 COPY . .
 
 # Run a gofmt and exclude all vendored code.
@@ -17,10 +17,10 @@ RUN CGO_ENABLED=0 GOOS=linux \
     go test $(go list ./... | grep -v /vendor/) -cover
 
 FROM gcr.io/distroless/base
-COPY --from=builder /go/src/handler /
+COPY --from=builder /src/handler /
 COPY --from=builder /usr/bin/fwatchdog /
 ENV fprocess="./handler"
 
 HEALTHCHECK --interval=2s CMD [ -e /tmp/.lock ] || exit 1
 
-CMD ["./fwatchdog"]
+ENTRYPOINT ["./fwatchdog"]
