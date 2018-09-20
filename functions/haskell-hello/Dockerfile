@@ -12,8 +12,8 @@ COPY . .
 
 RUN ghc --make function/handler.hs -o handler
 
-FROM gcr.io/distroless/java
-#FROM ubuntu
+#FROM gcr.io/distroless/java
+FROM ubuntu
 COPY --from=builder /src/handler /
 COPY --from=builder /usr/bin/fwatchdog /
 ENV fprocess="./handler"
