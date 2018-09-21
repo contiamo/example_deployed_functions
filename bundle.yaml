@@ -6,44 +6,33 @@ functions:
   go-hello:
     lang: dockerfile
     function: /functions/go-hello
-    image: go-hello
   r-hello:
     lang: dockerfile
     handler: /functions/r-hello
-    image: r-hello
   python-hello:
     lang: dockerfile
     handler: /functions/python-hello
-    image: python-hello
   js-hello:
     lang: dockerfile
     handler: /functions/js-hello
-    image: js-hello
   ruby-hello:
     lang: dockerfile
     handler: /functions/ruby-hello
-    image: ruby-hello
   java-hello:
     lang: dockerfile
     handler: /functions/java-hello
-    image: java-hello
   cpp-hello:
     lang: dockerfile
     handler: /functions/cpp-hello
-    image: cpp-hello
   julia-hello:
     lang: dockerfile
     handler: /functions/julia-hello
-    image: julia-hello
   haskell-hello:
     lang: dockerfile
     handler: /functions/haskell-hello
-    image: haskell-hello
   scala-hello:
     lang: dockerfile
     handler: /functions/scala-hello
-    image: scala-hello
   rust-hello:
     lang: dockerfile
     handler: /functions/rust-hello
-    image: rust-hello
