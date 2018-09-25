@@ -1,4 +1,4 @@
-FROM python:3-alpine
+FROM python:3-alpine as builder
 
 # Allows you to add additional packages via build-arg
 ARG ADDITIONAL_PACKAGE
@@ -37,6 +37,12 @@ USER root
 COPY function           function
 RUN chown -R app:app ./
 USER app
+
+
+FROM gcr.io/distroless/python3
+
+COPY --from=builder /src/handler /
+COPY --from=builder /usr/bin/fwatchdog / 
 
 ENV fprocess="python3 index.py"
 
