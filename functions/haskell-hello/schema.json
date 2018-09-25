@@ -1,0 +1,9 @@
+{
+    "description": "Returns a string appendended to the input string, e.g. 42 -> Hi there, you said: 42",
+    "request": {
+        "type": "string"
+    },
+    "response": {
+        "type": "string"
+    }
+}
