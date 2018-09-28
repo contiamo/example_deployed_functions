@@ -9,9 +9,9 @@ functions:
   r-hello:
     lang: dockerfile
     handler: /functions/r-hello
-  # python-hello:
-  #   lang: dockerfile
-  #   handler: /functions/python-hello
+  python-hello:
+    lang: dockerfile
+    handler: /functions/python-hello
   # js-hello:
   #   lang: dockerfile
   #   handler: /functions/js-hello
