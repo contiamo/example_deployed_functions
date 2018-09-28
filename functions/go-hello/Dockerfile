@@ -16,7 +16,7 @@ RUN go build --ldflags "-s -w" -a -installsuffix cgo -o handler .
 
 FROM gcr.io/distroless/base
 
-COPY --from=builder /src/handler /
+COPY --from=builder /go/src/handler/handler /
 COPY --from=builder /usr/bin/fwatchdog /
 
 ENV fprocess="./handler"
