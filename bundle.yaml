@@ -12,9 +12,9 @@ functions:
   python-hello:
     lang: dockerfile
     handler: /functions/python-hello
-  # js-hello:
-  #   lang: dockerfile
-  #   handler: /functions/js-hello
+  js-hello:
+    lang: dockerfile
+    handler: /functions/js-hello
   # ruby-hello:
   #   lang: dockerfile
   #   handler: /functions/ruby-hello
