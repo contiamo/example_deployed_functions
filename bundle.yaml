@@ -15,24 +15,24 @@ functions:
   js-hello:
     lang: dockerfile
     handler: /functions/js-hello
-  # ruby-hello:
-  #   lang: dockerfile
-  #   handler: /functions/ruby-hello
-  # java-hello:
-  #   lang: dockerfile
-  #   handler: /functions/java-hello
-  # cpp-hello:
-  #   lang: dockerfile
-  #   handler: /functions/cpp-hello
-  # julia-hello:
-  #   lang: dockerfile
-  #   handler: /functions/julia-hello
-  # haskell-hello:
-  #   lang: dockerfile
-  #   handler: /functions/haskell-hello
-  # scala-hello:
-  #   lang: dockerfile
-  #   handler: /functions/scala-hello
-  # rust-hello:
-  #   lang: dockerfile
-  #   handler: /functions/rust-hello
+  ruby-hello:
+    lang: dockerfile
+    handler: /functions/ruby-hello
+  java-hello:
+    lang: dockerfile
+    handler: /functions/java-hello
+  cpp-hello:
+    lang: dockerfile
+    handler: /functions/cpp-hello
+  julia-hello:
+    lang: dockerfile
+    handler: /functions/julia-hello
+  haskell-hello:
+    lang: dockerfile
+    handler: /functions/haskell-hello
+  scala-hello:
+    lang: dockerfile
+    handler: /functions/scala-hello
+  rust-hello:
+    lang: dockerfile
+    handler: /functions/rust-hello
