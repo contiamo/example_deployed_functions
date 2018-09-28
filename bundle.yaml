@@ -3,15 +3,15 @@ name: example_functions
 edit:
   image: contiamo/datascience-lab:latest
 functions:
-  # go-hello:
-  #   lang: dockerfile
-  #   function: /functions/go-hello
-  # r-hello:
-  #   lang: dockerfile
-  #   handler: /functions/r-hello
-  # python-hello:
-  #   lang: dockerfile
-  #   handler: /functions/python-hello
+  go-hello:
+    lang: dockerfile
+    function: /functions/go-hello
+  r-hello:
+    lang: dockerfile
+    handler: /functions/r-hello
+  python-hello:
+    lang: dockerfile
+    handler: /functions/python-hello
   js-hello:
     lang: dockerfile
     handler: /functions/js-hello
