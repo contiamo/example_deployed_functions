@@ -13,7 +13,7 @@ Use this FaaS function using R.
 
 <!-- -->
 
-    # curl -sSL https://get.openfaas.com | sudo sh
+    # curl -sSL https://get.openfaas.com |   sh
 
     # faas-cli -action=deploy -image=functions/base:R-3.4.1-alpine -name=baser
     200 OK
