@@ -13,7 +13,7 @@ COPY  . .
 # Install required modules.
 RUN pip install -r requirements.txt
 # Switch to non-root user.
-USER app
+USER guest
 # Watchdog configuration
 ENV fprocess="python3 index.py"
 EXPOSE 8080  
