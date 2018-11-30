@@ -1,7 +1,7 @@
-def handle(req: str) -> str:
+def handle(inp: str) -> str:
     """handle a request to the function
     Args:
-        req (str): request body
+        inp (str): request body
     """
-    output_string = 'Hi there, you said: ' + req
+    output_string = 'Hi there, you said: ' + inp
     return output_string
