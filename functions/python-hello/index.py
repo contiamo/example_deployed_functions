@@ -2,7 +2,8 @@
 # Licensed under the MIT license. See LICENSE file in the project root for full license information.
 
 import sys
-from function import handler
+import handler
+
 
 def get_stdin():
     buf = ""
@@ -12,6 +13,7 @@ def get_stdin():
         if line == "":
             break
     return buf
+
 
 if __name__ == "__main__":
     st = get_stdin()
